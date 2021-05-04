@@ -91,7 +91,7 @@ class AppConsts {
   static const page_size = 20;
 }
 
-class OpenFlutterEcommerceTheme {
+class MyAppTheme {
   static ThemeData of(context) {
     var theme = Theme.of(context);
     return
@@ -195,7 +195,7 @@ class OpenFlutterEcommerceTheme {
   }
 }
 
-class OpenFlutterEcommerceDarkTheme {
+class MyAppDarkTheme {
   static ThemeData of(context) {
     var theme = Theme.of(context);
     return
