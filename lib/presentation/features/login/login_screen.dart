@@ -63,11 +63,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     // on success delete navigator stack and push to home
                     if (state is LoginFinishedState) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        TestAppRoutes.login,
-                            (Route<dynamic> route) => false,
+                        TestAppRoutes.users, (Route<dynamic> route) => false,
                       );
                     }
-                    // on failure show a snackbar
                     if (state is LoginErrorState) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

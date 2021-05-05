@@ -79,38 +79,30 @@ class NetworkRequest implements NetworkRequestAbstract{
 
 
 
-Future<List<dynamic>> _getApiRequest(String url, body) async {
-  String queryString = Uri(queryParameters: body).query;
-  var requestUrl = url + '?' + queryString; // result - https://www.myurl.com/api/v1/user?param1=1&param2=2
-  final response = await client.get(requestUrl,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  );
-  if (response.statusCode == 200) {
-    String res = response.body.toString();
-    String res2 = json.decode(response.body).toString();
-    return json.decode(response.body);
-  } else {
-    throw HttpRequestException();
+  Future<dynamic> _getApiRequest(String url, body) async {
+    String queryString = Uri(queryParameters: body).query;
+    var requestUrl = url + '?' + queryString;
+    final response = await client.get(requestUrl,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw HttpRequestException();
+    }
   }
-}
 
-Future<dynamic> _postApiRequest(String url, body) async {
-  // Map<String,String> headers = {'Content-Type':'application/json'};
-  Map<String,String> headers = {'Content-Type': 'application/json'};
-  // final response = await http.post(url, headers: headers, body: body);
-
-  final response = await client.post(
+  Future<dynamic> _postApiRequest(String url, body) async {
+    Map<String,String> headers = {'Content-Type': 'application/json'};
+    final response = await client.post(
         url,
         headers: headers,
         body: json.encode(body));
-    // print(json.decode(response.body).toString());
-  if (response.statusCode == 200 || response.statusCode == 400) {
-    String res = response.body.toString();
-    String res2 = json.decode(response.body).toString();
-    return json.decode(response.body);
-  } else {
+    if (response.statusCode == 200 || response.statusCode == 400) {
+      return json.decode(response.body);
+    } else {
       throw HttpRequestException();
     }
   }

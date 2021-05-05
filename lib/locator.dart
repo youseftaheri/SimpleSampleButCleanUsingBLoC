@@ -3,9 +3,13 @@ import 'package:get_it/get_it.dart';
 import 'package:my_flutter_test_app1/data/network/network_request.dart';
 import 'data/network/network_status.dart';
 import 'data/repositories/abstract/login_repository.dart';
+import 'data/repositories/abstract/user_list_repository.dart';
 import 'data/repositories/login_repository_impl.dart';
+import 'data/repositories/user_list_repository_impl.dart';
 import 'domain/usecases/login_usecase.dart';
 import 'package:http/http.dart' as http;
+
+import 'domain/usecases/user_list_usecase.dart';
 
 final sl = GetIt.instance;
 
@@ -20,6 +24,8 @@ void init() {
   sl.registerLazySingleton<NetworkRequestAbstract>(() => NetworkRequest(client: sl()),);
 
   sl.registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl(),);
-  //get rate login info by filter use case
   sl.registerFactory<LoginUseCase>(() => LoginUseCaseImpl());
+
+  sl.registerLazySingleton<UserListRepository>(() => UserListRepositoryImpl(),);
+  sl.registerFactory<UserListUseCase>(() => UserListUseCaseImpl());
 }

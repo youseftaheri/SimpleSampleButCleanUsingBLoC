@@ -5,8 +5,8 @@ class LoginDataModel extends LoginDataEntity {
 
   LoginDataModel(
       {
-        @required token,
-        @required error,
+        token,
+        error,
       }) : super(
       token: token,
       error: error

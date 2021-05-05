@@ -1,7 +1,7 @@
 import 'package:my_flutter_test_app1/data/error/exceptions.dart';
 import 'package:my_flutter_test_app1/data/model/loginData.dart';
 import 'package:my_flutter_test_app1/data/network/network_status.dart';
-import 'package:my_flutter_test_app1/data/testApp/repositories/login_remote_repositories.dart';
+import 'package:my_flutter_test_app1/data/testApp/repositories/login_remote_repository.dart';
 
 import '../../locator.dart';
 import 'abstract/login_repository.dart';

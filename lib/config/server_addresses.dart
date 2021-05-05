@@ -1,10 +1,9 @@
 class ServerAddresses {
-  //Server address of your project should go here
   static const serverAddress = 'https://reqres.in/api/';
 
   static const _login = 'login/';
-  static const _users = 'splash/';
-  static const _details = 'app/login/';
+  static const _users = 'users';
+  static const _details = 'users/';
 
   static String get login => serverAddress  + _login;
   static String get users => serverAddress  + _users;

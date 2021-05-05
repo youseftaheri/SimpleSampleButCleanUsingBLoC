@@ -19,6 +19,9 @@ import 'presentation/features/authentication/authentication.dart';
 import 'locator.dart' as service_locator;
 import 'presentation/features/login/login_screen.dart';
 import 'presentation/features/login/login_screen.dart';
+import 'presentation/features/userList/user_list.dart';
+import 'presentation/features/userList/user_list.dart';
+import 'presentation/features/userList/user_list_screen.dart';
 
 
 // class SimpleBlocDelegate extends BlocObserver {
@@ -206,7 +209,7 @@ class TestAppApp extends StatelessWidget {
   Map<String, WidgetBuilder> _registerRoutes() {
     return <String, WidgetBuilder>{
       TestAppRoutes.login: (context) => _buildLoginBloc(),
-      // TestAppRoutes.users: (context) => UsersScreen(),
+      TestAppRoutes.users: (context) => _buildUserListBloc(),
       // TestAppRoutes.details: (context) => DetailsScreen(),
       // TestAppRoutes.profile: (context) =>
       //     BlocBuilder<AuthenticationBloc, AuthenticationState>(
@@ -231,6 +234,13 @@ class TestAppApp extends StatelessWidget {
         // authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
       ),
       child: LoginScreen(),
+    );
+  }
+
+  BlocProvider<UserListBloc> _buildUserListBloc() {
+    return BlocProvider<UserListBloc>(
+      create: (context) => UserListBloc(),
+      child: UserListScreen(parameters: UserListParameters('1')),
     );
   }
 

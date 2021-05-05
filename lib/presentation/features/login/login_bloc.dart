@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_flutter_test_app1/data/repositories/abstract/login_repository.dart';
+import 'package:bloc/bloc.dart';
 import 'package:my_flutter_test_app1/domain/usecases/login_usecase.dart';
 import 'package:my_flutter_test_app1/presentation/features/authentication/authentication_bloc.dart';
-import 'package:my_flutter_test_app1/presentation/features/authentication/authentication_event.dart';
 
 import '../../../locator.dart';
 import 'login.dart';
@@ -31,6 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if(loginResult.login.token != null) {
           // authenticationBloc.add(LoggedIn(loginResult.login.token));
           yield LoginErrorState(loginResult.login.token);
+          yield LoginFinishedState();
         }else
           yield LoginErrorState(loginResult.login.error);
         // yield LoginFinishedState();
