@@ -50,7 +50,7 @@ class NetworkRequest implements NetworkRequestAbstract{
       'email':email,
       'password':password,
     };
-    return _getApiRequest(ServerAddresses.login, body);
+    return _postApiRequest(ServerAddresses.login, body);
   }
 
   @override
@@ -88,18 +88,29 @@ Future<List<dynamic>> _getApiRequest(String url, body) async {
     },
   );
   if (response.statusCode == 200) {
+    String res = response.body.toString();
+    String res2 = json.decode(response.body).toString();
     return json.decode(response.body);
   } else {
     throw HttpRequestException();
   }
 }
 
-  Future<dynamic> _postApiRequest(String url, body) async {
-    final response = await client.post(url,  body: body);
+Future<dynamic> _postApiRequest(String url, body) async {
+  // Map<String,String> headers = {'Content-Type':'application/json'};
+  Map<String,String> headers = {'Content-Type': 'application/json'};
+  // final response = await http.post(url, headers: headers, body: body);
+
+  final response = await client.post(
+        url,
+        headers: headers,
+        body: json.encode(body));
     // print(json.decode(response.body).toString());
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
+  if (response.statusCode == 200 || response.statusCode == 400) {
+    String res = response.body.toString();
+    String res2 = json.decode(response.body).toString();
+    return json.decode(response.body);
+  } else {
       throw HttpRequestException();
     }
   }

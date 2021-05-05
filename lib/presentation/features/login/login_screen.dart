@@ -42,19 +42,22 @@ class _LoginScreenState extends State<LoginScreen> {
           iconTheme: IconThemeData(color: AppColors.colorPrimary),
         ),
         backgroundColor: AppColors.background,
-        body:BlocProvider<LoginBloc>(
-    create: (context) {
-    return LoginBloc()
-    ..add(LoginLoadEvent());
-    },
-    child:
+        body:
+
+    //     BlocProvider<LoginBloc>(
+    // create: (context) {
+    // return LoginBloc()
+    // ..add(LoginLoadEvent());
+    // },
+    // child:
+
         // Builder(
         //   // Here the magic happens
         //   // this builder function will generate a new BuilContext for you
         //     builder: (BuildContext context){
         //       return
-              // BlocBuilder<LoginBloc, LoginState>(
-              // builder: (BuildContext context, LoginState state) {
+        //       BlocBuilder<LoginBloc, LoginState>(
+        //       builder: (BuildContext context, LoginState state) {
                 BlocConsumer<LoginBloc, LoginState>(
                   listener: (context, state) {
                     // on success delete navigator stack and push to home
@@ -152,19 +155,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 )
-        //     }
-        )
+            // }
+        // )
 
     );
   }
 
   void _validateAndSend() {
-    if (emailKey.currentState.validate() != null) {
-      return;
-    }
-    if (passwordKey.currentState.validate() != null) {
-      return;
-    }
+    // if (emailKey.currentState.validate() != null) {
+    //   return;
+    // }
+    // if (passwordKey.currentState.validate() != null) {
+    //   return;
+    // }
     BlocProvider.of<LoginBloc>(context).add(
       LoginPressed(
         email: emailController.text,
